@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All tests">
+    <test name="HerokuApp">
+        <classes>
+            <class name="tests.AddRemoveElementTest"/>
+            <class name="tests.CheckboxTest"/>
+            <class name="tests.ContextMenuTest"/>
+            <class name="tests.DropDownTest"/>
+            <class name="tests.DynamicControlsTest"/>
+            <class name="tests.FileUploadTest"/>
+            <class name="tests.FramesTest"/>
+        </classes>
+    </test>
+</suite>
