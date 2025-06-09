@@ -15,10 +15,11 @@ import java.util.List;
 
 public class AddRemoveElementTest {
     WebDriver driver;
-    SoftAssert softAssert = new SoftAssert();
+    SoftAssert softAssert;
 
     @BeforeMethod
     public void setup(){
+        softAssert = new SoftAssert();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         driver = new ChromeDriver(options);
@@ -35,11 +36,11 @@ public class AddRemoveElementTest {
         deleteButtons.get(1).click();
         List<WebElement> buttonsAfterDelete = driver.findElements(By.xpath("//button[text()='Delete']"));
         softAssert.assertEquals(buttonsAfterDelete.size(), 1, "not one element");
+        softAssert.assertAll();
     }
 
     @AfterMethod (alwaysRun = true)
     public void tearDown(){
         driver.quit();
-        softAssert.assertAll();
     }
 }

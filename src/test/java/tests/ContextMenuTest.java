@@ -9,16 +9,16 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import org.testng.asserts.SoftAssert;
 
 import java.time.Duration;
 
 public class ContextMenuTest {
     WebDriver driver;
-    SoftAssert softAssert = new SoftAssert();
+
 
     @BeforeMethod
     public void setup(){
@@ -38,13 +38,12 @@ public class ContextMenuTest {
         wait.until(ExpectedConditions.alertIsPresent());
         Alert alert = driver.switchTo().alert();
         String alertText = alert.getText();
-        softAssert.assertEquals(alertText, "You selected a context menu", "Wrong text in alert");
+        Assert.assertEquals(alertText, "You selected a context menu", "Wrong text in alert");
         alert.accept();
     }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown(){
         driver.quit();
-        softAssert.assertAll();
     }
 }

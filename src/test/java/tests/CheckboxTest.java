@@ -15,10 +15,11 @@ import java.util.List;
 
 public class CheckboxTest {
     WebDriver driver;
-    SoftAssert softAssert = new SoftAssert();
+    SoftAssert softAssert;
 
     @BeforeMethod
     public void setup(){
+        softAssert = new SoftAssert();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         driver = new ChromeDriver(options);
@@ -33,11 +34,11 @@ public class CheckboxTest {
         List<WebElement> checkboxes = driver.findElements(By.cssSelector("[type=checkbox]"));
         softAssert.assertEquals(checkboxes.get(0).isSelected(), true, "input is unchecked");
         softAssert.assertEquals(checkboxes.get(1).isSelected(), false, "input is checked");
+        softAssert.assertAll();
     }
 
     @AfterMethod (alwaysRun = true)
     public void tearDown(){
         driver.quit();
-        softAssert.assertAll();
     }
 }

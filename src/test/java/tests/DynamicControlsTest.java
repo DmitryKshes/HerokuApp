@@ -15,10 +15,11 @@ import java.time.Duration;
 
 public class DynamicControlsTest {
     WebDriver driver;
-    SoftAssert softAssert = new SoftAssert();
+    SoftAssert softAssert;
 
     @BeforeMethod
     public void setup() {
+        softAssert = new SoftAssert();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("start-maximized");
         driver = new ChromeDriver(options);
@@ -39,11 +40,11 @@ public class DynamicControlsTest {
         wait.until(ExpectedConditions.textToBe(By.id("message"), "It's enabled!"));
         boolean inputIsEnableAfterClick = driver.findElement(By.xpath("//*[@id=\"input-example\"]/input")).isEnabled();
         softAssert.assertEquals(inputIsEnableAfterClick, true, "input is disabled");
+        softAssert.assertAll();
     }
 
     @AfterMethod(alwaysRun = true)
     public void tearDown(){
         driver.quit();
-        softAssert.assertAll();
     }
 }
